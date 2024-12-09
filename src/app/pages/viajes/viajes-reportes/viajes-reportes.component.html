@@ -1,0 +1,70 @@
+<div class="card mx-auto max-w-4xl">
+  <div class="card-header">
+    <h2 class="card-title">Reportes de Viajes</h2>
+  </div>
+  <div class="card-content">
+    <form [formGroup]="reporteForm" (ngSubmit)="generatePDF()" class="space-y-8">
+      <div class="form-group">
+
+      <div class="form-grid">
+        <div class="space-y-2">
+          <label for="startDate" class="form-label">Fecha Inicio</label>
+          <mat-form-field appearance="fill" class="custom-datepicker dark-theme">
+            <mat-label>Seleccione una fecha</mat-label>
+            <input matInput [matDatepicker]="startPicker" id="inicio_Fecha" formControlName="inicio_Fecha">
+            <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+            <mat-datepicker #startPicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="space-y-2">
+          <label for="endDate" class="form-label">Fecha Final</label>
+          <mat-form-field appearance="fill" class="custom-datepicker dark-theme">
+            <mat-label>Seleccione una fecha</mat-label>
+            <input matInput [matDatepicker]="endPicker" id="final_Fecha" formControlName="final_Fecha">
+            <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+            <mat-datepicker #endPicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      </div>
+
+      <div class="form-group">
+        <label for="sucursal" class="form-label">Seleccione una Sucursal</label>
+        <select id="sucursal" formControlName="sucursal" class="form-input">
+          <option value="">Seleccione una sucursal</option>
+          <option *ngFor="let sucu of sucursalDDL" [value]="sucu.sucu_Id">
+            {{ sucu.sucu_Nombre }}
+          </option>
+        </select>
+      </div>
+
+      <div class="flex justify-end gap-4">
+        <button (click)="downloadPDF()" *ngIf="pdfSrc" style="background-color: rgb(74, 131, 74);" mat-button (click)="onCancel()" class="btn btn-outline">
+          Descargar PDF
+        </button>
+        <button mat-button (click)="onCancel()" class="btn btn-outline">
+          Cancelar
+        </button>
+        <button mat-raised-button color="primary" type="submit" class="btn btn-primary" [disabled]="!reporteForm.valid">
+          Visualizar
+        </button>
+      </div>
+    </form>
+  </div>
+  <ng-container *ngIf="pdfSrc">
+    <div class="mt-6">
+      <pdf-viewer 
+        [src]="pdfSrc" 
+        [render-text]="true" 
+        [original-size]="false" 
+        style="width: 95%; height: 600px; margin-right: 1.5rem; margin-left: 1.5rem; margin-block-end: 1.5rem;">
+      </pdf-viewer>
+
+      <!-- <button (click)="downloadPDF()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4">
+        Descargar PDF
+      </button> -->
+    </div>
+  </ng-container>
+</div>
+
+

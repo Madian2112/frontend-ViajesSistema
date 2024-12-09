@@ -1,0 +1,40 @@
+<div class="login-container">
+    <div class="background-image"></div>
+    <div class="overlay"></div>
+    <div class="login-form-container">
+      <div class="login-form-content">
+        <h2>Bienvenido</h2>
+        <p class="subtitle">Ingresa a tu cuenta para continuar</p>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <input type="text" id="usuario" formControlName="usua_Usuario" placeholder=" " required>
+            <label for="email">Usuario</label>
+            <div class="input-icon">
+              <i class="fas fa-user"></i>
+            </div>
+            <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error-message">
+              Por favor, ingresa un email válido.
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="password" id="clave" formControlName="usua_Clave" placeholder=" " required>
+            <label for="clave">Contraseña</label>
+            <div class="input-icon">
+              <i class="fas fa-lock"></i>
+            </div>
+            <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('usua_Clave')?.touched" class="error-message">
+              La contraseña debe tener al menos 6 caracteres.
+            </div>
+          </div>
+          <button type="submit" [disabled]="loginForm.invalid">
+            <span>Iniciar sesión</span>
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        </form>
+        <p *ngIf="credencialesInvalidad" class="signup-link" style="color: red;">Credenciales invalidas</p>
+      </div>
+    </div>
+  </div>
+  
+  
+  

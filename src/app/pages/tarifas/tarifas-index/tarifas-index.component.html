@@ -1,0 +1,34 @@
+<div class="card mx-auto max-w-7xl">
+    <div class="card-header">
+      <h2 class="card-title text-3xl font-semibold">Gestión de Sucursales</h2>
+    </div>
+    <div class="card-content">
+      <div class="table-container overflow-x-auto">
+        <table mat-table [dataSource]="data" class="w-full min-w-max">
+          <ng-container matColumnDef="index">
+            <th mat-header-cell *matHeaderCellDef class="py-4"> # </th>
+            <td mat-cell *matCellDef="let i = index" class="py-4"> {{i + 1}} </td>
+          </ng-container>
+          <ng-container matColumnDef="Tarifa">
+            <th mat-header-cell *matHeaderCellDef class="py-4"> Tarifa </th>
+            <td mat-cell *matCellDef="let user" class="py-4"> {{user.tari_Tarifa}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef class="py-4"> Accion </th>
+            <td mat-cell *matCellDef="let user" class="py-4">
+              <div class="action-buttons">
+                <button mat-raised-buton class="btn btn-edit" (click)="editar(user)" matTooltip="Editar">
+                  <mat-icon>edit</mat-icon>
+                  Editar
+                </button>
+              </div>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  

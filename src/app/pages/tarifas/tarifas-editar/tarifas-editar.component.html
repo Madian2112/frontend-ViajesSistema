@@ -1,0 +1,32 @@
+<div class="card mx-auto max-w-4xl">
+    <div class="card-header">
+    <h2 class="card-title">Nuevo Colaborador</h2>
+    </div>
+    <div class="card-content">
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="space-y-8">
+        <div class="form-grid">
+            <div class="space-y-2">
+                <label for="tari_Tarifa" class="form-label">Tarifa</label>
+                <input 
+                type="text" 
+                id="tari_Tarifa" 
+                formControlName="tari_Tarifa" 
+                class="form-input"
+                placeholder="Ingrese la identidad"
+                >
+            </div>
+        </div>
+
+        <div class="flex justify-end gap-4">
+        <button type="button" (click)="onCancel()" class="btn btn-outline">
+            Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="!employeeForm.valid">
+            Guardar
+        </button>
+        </div>
+    </form>
+    </div>
+</div>
+  
+  

@@ -1,0 +1,62 @@
+    <div class="card mx-auto max-w-4xl">
+      <div class="card-header">
+        <h2 class="card-title">Gestión de Sucursales y Colaboradores</h2>
+      </div>
+      <div class="card-content">
+        <form  [formGroup]="managementForm" (ngSubmit)="onSubmit()" class="space-y-8">
+          <div class="form-group">
+            <label for="branch" class="form-label">Seleccione una Sucursal</label>
+            <select id="branch" formControlName="branch" class="form-input" (change)="onSelect($event)">
+              <option value="">Seleccione una sucursal</option>
+              <option *ngFor="let branch of branches" [value]="branch.sucu_Id">
+                {{ branch.sucu_Nombre }}
+              </option>
+            </select>
+            <div style="color: red;" *ngIf="modeloVacio">
+              Tiene que seleccionar al menos a un colaborador.
+            </div>
+          </div>
+  
+          <div class="collaborators-section" *ngIf="emplSucu">
+            <h3 class="section-title">Colaboradores</h3>
+            <div class="form-grid">
+              <div *ngFor="let collaborator of collaborators; let i = index" class="collaborator-item">
+                <div class="checkbox-group">
+                  <mat-checkbox 
+                    [formControlName]="'collaborator' + i"
+                    color="primary"
+                    style="color: white;"
+                  >
+                    <p style="color: white;">{{ collaborator.cola_PrimerNombre +' ' + collaborator.cola_PrimerApellido }}</p>
+                  </mat-checkbox>
+                </div>
+                <input 
+                  [formControlName]="'collaboratorInput' + i"
+                  placeholder="Distancia"
+                  class="form-input"
+                  [readOnly]="!managementForm.get('collaborator' + i)?.value"
+                >
+                <div style="color: red;" *ngIf="managementForm.get('collaboratorInput' + i)?.hasError('pattern') && managementForm.get('collaboratorInput' + i)?.touched">
+                  Solo se permiten números y que sean positivos.
+                </div>
+                <div style="color: red;" *ngIf="managementForm.get('collaboratorInput' + i)?.hasError('max')">
+                  El número no puede ser mayor a 50.
+                </div>
+              </div>
+            </div>
+          </div>
+          
+  
+          <div class="flex justify-end gap-4">
+            <button mat-button (click)="onCancel()" class="btn btn-outline">
+              Cancelar
+            </button>
+            <button mat-raised-button color="primary" type="submit" class="btn btn-primary" [disabled]="!managementForm.valid">
+              Guardar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  
+  

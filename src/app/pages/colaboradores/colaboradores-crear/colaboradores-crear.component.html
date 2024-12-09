@@ -1,0 +1,98 @@
+<div class="card mx-auto max-w-4xl">
+    <div class="card-header">
+    <h2 class="card-title">Nuevo Colaborador</h2>
+    </div>
+    <div class="card-content">
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="space-y-8">
+        <div class="form-grid">
+        <div class="space-y-2">
+            <label for="cola_Identidad" class="form-label">Identidad</label>
+            <input 
+            type="text" 
+            id="cola_Identidad" 
+            formControlName="cola_Identidad" 
+            class="form-input"
+            placeholder="Ingrese la identidad"
+            >
+        </div>
+
+        <div class="space-y-2">
+            <label for="cola_PrimerNombre" class="form-label">Primer Nombre</label>
+            <input 
+            type="text" 
+            id="cola_PrimerNombre" 
+            formControlName="cola_PrimerNombre" 
+            class="form-input"
+            placeholder="Ingrese el primer nombre"
+            >
+        </div>
+
+        <div class="space-y-2">
+            <label for="cola_SegundoNombre" class="form-label">Segundo Nombre</label>
+            <input 
+            type="text" 
+            id="cola_SegundoNombre" 
+            formControlName="cola_SegundoNombre" 
+            class="form-input"
+            placeholder="Ingrese el segundo nombre"
+            >
+        </div>
+
+        <div class="space-y-2">
+            <label for="cola_PrimerApellido" class="form-label">Primer Apellido</label>
+            <input 
+            type="text" 
+            id="cola_PrimerApellido" 
+            formControlName="cola_PrimerApellido" 
+            class="form-input"
+            placeholder="Ingrese el primer apellido"
+            >
+        </div>
+
+        <div class="space-y-2">
+            <label for="cola_SegundoApellido" class="form-label">Segundo Apellido</label>
+            <input 
+            type="text" 
+            id="cola_SegundoApellido" 
+            formControlName="cola_SegundoApellido" 
+            class="form-input"
+            placeholder="Ingrese el segundo apellido"
+            >
+        </div>
+
+        <div class="space-y-2">
+            <label class="form-label">Sexo</label>
+            <div class="flex gap-4">
+            <label class="flex items-center">
+                <input type="radio" formControlName="cola_Sexo" value="f" class="mr-2">
+                <span class="text-white">Femenino</span>
+            </label>
+            <label class="flex items-center">
+                <input type="radio" formControlName="cola_Sexo" value="m" class="mr-2">
+                <span class="text-white">Masculino</span>
+            </label>
+            </div>
+        </div>
+
+        <div class="space-y-2">
+            <label class="form-label">Es Transpostista</label>
+            <input type="checkbox" formControlName="cola_EsTransportista" class="mr-2">
+        </div>
+        </div>
+
+        <div class="flex justify-end gap-4">
+        <button mat-raised-buton class="btn btn-detail" (click)="sucursalesColaboradores()" matTooltip="Detalle">
+            Empleados a Sucursales
+        </button>
+        <button type="button" (click)="onCancel()" class="btn btn-outline">
+            Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="!employeeForm.valid">
+            Guardar
+        </button>
+        </div>
+    </form>
+    </div>
+</div>
+  
+  

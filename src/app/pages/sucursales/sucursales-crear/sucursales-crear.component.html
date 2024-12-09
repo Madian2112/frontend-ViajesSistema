@@ -1,0 +1,190 @@
+<!-- <div class="max-w-full py-8 text-black">
+<div class="mb-16 px-3 py-8 md:px-8 bg-white">
+  <h2 mat-dialog-title>Nueva Sucursal</h2>
+  <form [formGroup]="branchForm" (ngSubmit)="onSubmit()">
+    <div class="form-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name" required>
+        <mat-error *ngIf="branchForm.get('name')?.hasError('required')">
+          El nombre es requerido
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Dirección</mat-label>
+        <input matInput formControlName="address" required>
+        <mat-error *ngIf="branchForm.get('address')?.hasError('required')">
+          La dirección es requerida
+        </mat-error>
+      </mat-form-field>
+
+      <div class="map-container" #mapContainer></div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>País</mat-label>
+        <input matInput formControlName="country" readonly>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Estado/Departamento</mat-label>
+        <input matInput formControlName="state" readonly>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Ciudad/Municipio</mat-label>
+        <input matInput formControlName="city" readonly>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Latitud</mat-label>
+        <input matInput formControlName="latitude" readonly>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Longitud</mat-label>
+        <input matInput formControlName="longitude" readonly>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Latitud</mat-label>
+        <input matInput formControlName="lat2">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Longitud</mat-label>
+        <input matInput formControlName="lng2">
+      </mat-form-field>
+      
+    </div>
+
+    <button mat-button (click)="reverseGeocode()">Direccion 2</button>  
+    <div mat-dialog-actions>
+      <button mat-button (click)="onCancel()">Cancelar</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!branchForm.valid">Guardar</button>
+    </div>
+  </form>
+</div>
+</div>
+
+ -->
+
+
+
+
+
+<div class="card mx-auto max-w-4xl">
+  <div class="card-header">
+    <h2 class="card-title text-3xl font-semibold">Nueva Sucursal</h2>
+  </div>
+  <div class="card-content">
+    <form [formGroup]="branchForm" (ngSubmit)="onSubmit()" class="space-y-8">
+      <div class="form-grid">
+        <div class="space-y-2">
+          <label for="name" class="form-label">Nombre</label>
+          <input 
+            id="name"
+            formControlName="name"
+            class="form-input"
+            placeholder="Ingrese nombre"
+          >
+        </div>
+        
+        <div class="space-y-2">
+          <label for="direccion2" class="form-label">Direccion</label>
+          <input 
+            id="direccion2"
+            formControlName="direccion2"
+            class="form-input"
+            style="width: 13.5rem;"
+          >
+
+          <button 
+          type="button"
+          (click)="geocodeAddress()"
+          class="btn btn-buscar"  
+        >
+          Buscar direccion
+        </button>
+        </div>
+
+        <div class="map-container">
+          <div class="map-container" #mapContainer></div>
+        </div>
+
+        <div class="space-y-2">
+          <label for="country" class="form-label">País</label>
+          <input 
+            id="country"
+            formControlName="country"
+            class="form-input"
+            [disabled]="true"
+            readonly
+          >
+        </div>
+
+        <div class="space-y-2">
+          <label for="state" class="form-label">Estado/Departamento</label>
+          <input 
+            id="state"
+            formControlName="state"
+            class="form-input"
+            readonly
+          >
+        </div>
+
+        <div class="space-y-2">
+          <label for="city" class="form-label">Ciudad/Municipio</label>
+          <input 
+            id="city"
+            formControlName="city"
+            class="form-input"
+            readonly
+          >
+        </div>
+
+        <div class="space-y-2">
+          <label for="latitude" class="form-label">Latitud</label>
+          <input 
+            id="latitude"
+            formControlName="latitude"
+            class="form-input"
+            readonly
+          >
+        </div>
+
+        <div class="space-y-2">
+          <label for="longitude" class="form-label">Longitud</label>
+          <input 
+            id="longitude"
+            formControlName="longitude"
+            class="form-input"
+            readonly
+          >
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-4">
+        <button mat-raised-buton class="btn btn-detail" (click)="sucursalesColaboradores()" matTooltip="Detalle">
+          Empleados a Sucursales
+        </button>
+        <button 
+          type="button"
+          (click)="onCancel()"
+          class="btn btn-outline"
+        >
+          Cancelar
+        </button>
+        <button 
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!branchForm.valid"
+        >
+          Guardar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+  
+  
